@@ -12,6 +12,8 @@ namespace XF_FirstRun.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
+        // Сервис навигации между страницами
+        private INavigation _navigation;
         public ObservableCollection<Item> Items { get; set; }
 
         public string Icon1 { get; set; } = "\uf30c";
@@ -29,13 +31,21 @@ namespace XF_FirstRun.ViewModels
 
         public Command LoadItemsCommand { get; set; }
 
+        public Command AddItemCommand { get; private set; }
         public Command ShowCtlsCommand { get; private set; }
+        public Command ItemTappedCommand { get; private set; }
 
-        public ItemsViewModel()
+        public ItemsViewModel(INavigation navigation)
         {
+            _navigation = navigation;
+
             Title = "Browse";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            AddItemCommand = new Command(async () =>
+            {
+                await _navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            });
             ShowCtlsCommand = new Command(() =>
             {
                 if (IsCtlsVisible == "true")
@@ -46,6 +56,12 @@ namespace XF_FirstRun.ViewModels
                 {
                     IsCtlsVisible = "true";
                 }
+            });
+            ItemTappedCommand = new Command<Item>(async (item) =>
+            {
+                //var layout = (BindableObject)sender;
+                //var item = Items[1]; //(Item)layout.BindingContext;
+                await _navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
             });
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>

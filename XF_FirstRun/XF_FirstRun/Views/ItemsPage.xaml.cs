@@ -13,6 +13,9 @@ using XF_FirstRun.ViewModels;
 
 namespace XF_FirstRun.Views
 {
+    /// <summary>
+    /// Страница элементов списка.
+    /// </summary>
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
@@ -20,11 +23,14 @@ namespace XF_FirstRun.Views
     {
         ItemsViewModel viewModel;
 
+        /// <summary>
+        /// Конструктор класса ItemsPage.
+        /// </summary>
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new ItemsViewModel(Navigation);
         }
 
         async void OnItemSelected(object sender, EventArgs args)
@@ -32,11 +38,6 @@ namespace XF_FirstRun.Views
             var layout = (BindableObject)sender;
             var item = (Item)layout.BindingContext;
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
 
         protected override void OnAppearing()

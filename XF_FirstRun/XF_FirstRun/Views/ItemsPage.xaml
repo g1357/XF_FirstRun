@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
+             xmlns:local="clr-namespace:XF_FirstRun.ViewModels"             mc:Ignorable="d"
              x:Class="XF_FirstRun.Views.ItemsPage"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
         <ToolbarItem Text="Show" Command="{Binding ShowCtlsCommand}" />
     </ContentPage.ToolbarItems>
 
@@ -41,8 +41,14 @@
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                    Tapped="OnItemSelected">
+                                <!-- NumberOfTapsRequired="1" 
+                                     Command="{Binding ItemTappedCommand}"  >
+                                    Command="{TemplateBinding BindingContext.ItemTappedCommand}"  >
+                               -->
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTappedCommand}" 
+                                    CommandParameter="{Binding}">
+                                    <!--    Tapped="OnItemSelected" > -->
                                 </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
@@ -56,6 +62,12 @@
                         <FontImageSource Glyph="{Binding Icon2}"
                             FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" Size="44" />
                     </Image.Source>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                             Command="{Binding ItemTappedCommand}"  >
+                            <!--    Tapped="OnItemSelected" > -->
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
                 </Image>
                 <Button Text="Up" />
                 <Button Text="Down" />
