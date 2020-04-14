@@ -13,13 +13,40 @@ namespace XF_FirstRun.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         public ObservableCollection<Item> Items { get; set; }
+
+        public string Icon1 { get; set; } = "\uf30c";
+        public string Icon2 { get; set; } = "\uf2ba";
+
+        private string _IsCtlsVisible = "false";
+        public string IsCtlsVisible
+        {
+            get { return _IsCtlsVisible; }
+            set
+            {
+                SetProperty(ref _IsCtlsVisible, value); 
+            }
+        }
+
         public Command LoadItemsCommand { get; set; }
+
+        public Command ShowCtlsCommand { get; private set; }
 
         public ItemsViewModel()
         {
             Title = "Browse";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            ShowCtlsCommand = new Command(() =>
+            {
+                if (IsCtlsVisible == "true")
+                {
+                    IsCtlsVisible = "false";
+                }
+                else
+                {
+                    IsCtlsVisible = "true";
+                }
+            });
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {

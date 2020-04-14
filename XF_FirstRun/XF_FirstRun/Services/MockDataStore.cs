@@ -19,7 +19,19 @@ namespace XF_FirstRun.Services
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Seventh item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Eighth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Nineth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Tenth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Eleventh item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Twelveth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Thirteenth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourteenth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifteenth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixteenth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Seventeenth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Eighteenth item", Description="This is an item description." }
             };
         }
 
