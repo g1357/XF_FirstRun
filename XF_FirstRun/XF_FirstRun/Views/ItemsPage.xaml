@@ -15,8 +15,8 @@
 
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <StackLayout Orientation="Vertical">
-            <CollectionView x:Name="ItemsCollectionView"
-                ItemsSource="{Binding Items}">
+            <CollectionView x:Name="ItemsCollectionView" SelectedItem="{Binding SelectedItem}"
+                ItemsSource="{Binding Items}" SelectionMode="Single">
                 <d:CollectionView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>First Item</x:String>
@@ -41,20 +41,24 @@
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
                             <StackLayout.GestureRecognizers>
-                                <!-- NumberOfTapsRequired="1" 
-                                     Command="{Binding ItemTappedCommand}"  >
-                                    Command="{TemplateBinding BindingContext.ItemTappedCommand}"  >
-                               -->
-                                <TapGestureRecognizer 
+                                <TapGestureRecognizer NumberOfTapsRequired="2"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ShowCtlsCommand}" 
+                                    CommandParameter="{Binding}">
+                                </TapGestureRecognizer>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTappedCommand}" 
                                     CommandParameter="{Binding}">
-                                    <!--    Tapped="OnItemSelected" > -->
                                 </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Label Text="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, 
+                StringFormat='{0}'}" IsVisible="{Binding _debug}" />
+            <Label Text="{Binding Source={x:Reference BrowseItemsPage}, 
+                Path=BindingContext.ItemTappedCommand,
+                StringFormat='{0}'}" IsVisible="{Binding _debug}" />
             <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCtlsVisible}" >
                 <Button Text="{Binding Icon1}" FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" />
                 <Image BackgroundColor="#D1D1D1">
@@ -63,7 +67,7 @@
                             FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" Size="44" />
                     </Image.Source>
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                        <TapGestureRecognizer NumberOfTapsRequired="2"
                              Command="{Binding ItemTappedCommand}"  >
                             <!--    Tapped="OnItemSelected" > -->
                         </TapGestureRecognizer>

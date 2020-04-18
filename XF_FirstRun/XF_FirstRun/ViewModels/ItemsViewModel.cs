@@ -29,12 +29,23 @@ namespace XF_FirstRun.ViewModels
             }
         }
 
+        private Item _selewctedItem;
+        public Item SelectedItem
+        {
+            get { return _selewctedItem; }
+            set
+            {
+                SetProperty(ref _selewctedItem, value);
+            }
+        }
+
         public Command LoadItemsCommand { get; set; }
 
         public Command AddItemCommand { get; private set; }
         public Command ShowCtlsCommand { get; private set; }
         public Command ItemTappedCommand { get; private set; }
 
+        public string _debug { get; private set; } = "false";
         public ItemsViewModel(INavigation navigation)
         {
             _navigation = navigation;
@@ -46,7 +57,7 @@ namespace XF_FirstRun.ViewModels
             {
                 await _navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
             });
-            ShowCtlsCommand = new Command(() =>
+            ShowCtlsCommand = new Command<Item>(async (item) =>
             {
                 if (IsCtlsVisible == "true")
                 {
@@ -56,11 +67,13 @@ namespace XF_FirstRun.ViewModels
                 {
                     IsCtlsVisible = "true";
                 }
+                SelectedItem = item;
             });
             ItemTappedCommand = new Command<Item>(async (item) =>
             {
                 //var layout = (BindableObject)sender;
                 //var item = Items[1]; //(Item)layout.BindingContext;
+                SelectedItem = item;
                 await _navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
             });
 
@@ -70,6 +83,9 @@ namespace XF_FirstRun.ViewModels
                 Items.Add(newItem);
                 await DataStore.AddItemAsync(newItem);
             });
+#if DEBUG
+            _debug = "true";
+#endif
         }
 
         async Task ExecuteLoadItemsCommand()
