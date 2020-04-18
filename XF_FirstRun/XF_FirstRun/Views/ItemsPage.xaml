@@ -3,11 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:XF_FirstRun.ViewModels"             mc:Ignorable="d"
+             xmlns:local="clr-namespace:XF_FirstRun.ViewModels" 
+             xmlns:helper="clr-namespace:XF_FirstRun.Helpers"
+             mc:Ignorable="d"
              x:Class="XF_FirstRun.Views.ItemsPage"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helper:BoolToStringConverter x:Key="BoolToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
         <ToolbarItem Text="Show" Command="{Binding ShowCtlsCommand}" />
@@ -55,10 +61,10 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <Label Text="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, 
-                StringFormat='{0}'}" IsVisible="{Binding _debug}" />
+                StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
             <Label Text="{Binding Source={x:Reference BrowseItemsPage}, 
                 Path=BindingContext.ItemTappedCommand,
-                StringFormat='{0}'}" IsVisible="{Binding _debug}" />
+                StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
             <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCtlsVisible}" >
                 <Button Text="{Binding Icon1}" FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" />
                 <Image BackgroundColor="#D1D1D1">

@@ -45,7 +45,7 @@ namespace XF_FirstRun.ViewModels
         public Command ShowCtlsCommand { get; private set; }
         public Command ItemTappedCommand { get; private set; }
 
-        public string _debug { get; private set; } = "false";
+        public bool _debug { get; private set; } = false;
         public ItemsViewModel(INavigation navigation)
         {
             _navigation = navigation;
@@ -84,7 +84,7 @@ namespace XF_FirstRun.ViewModels
                 await DataStore.AddItemAsync(newItem);
             });
 #if DEBUG
-            _debug = "true";
+            _debug = true;
 #endif
         }
 
