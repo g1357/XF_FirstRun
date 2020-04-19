@@ -69,7 +69,7 @@
                 <Button Text="{Binding Icon1}" FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" />
                 <Image BackgroundColor="#D1D1D1">
                     <Image.Source>
-                        <FontImageSource Glyph="{Binding Icon2}"
+                        <FontImageSource Glyph="&#xf30c;"
                             FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" Size="44" />
                     </Image.Source>
                     <Image.GestureRecognizers>
