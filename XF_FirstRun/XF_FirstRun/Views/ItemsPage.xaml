@@ -51,12 +51,6 @@
                                         Command="{Binding Source={x:Reference BrowseItemsPage}, 
                                         Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
                             </SwipeView.Behaviors>
-                           <!--
-                            SwipeStarted="OnSwipeStarted"
-                            SwipeChanging="OnSwipeChanging"
-                            SwipeEnded="OnSwipeEnded"
-                            CloseRequested="OnCloseRequested"
-                           -->
                             <SwipeView.LeftItems>
                                 <SwipeItems>
                                     <SwipeItem Text="Favorite" IconImageSource="favorite.png"

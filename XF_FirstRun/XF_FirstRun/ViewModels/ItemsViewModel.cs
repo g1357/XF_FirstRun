@@ -14,7 +14,6 @@ namespace XF_FirstRun.ViewModels
     {
         // Сервис навигации между страницами
         private INavigation _navigation;
-        public ObservableCollection<Item> _items;
         public ObservableCollection<Item> Items { get; set; }
 
         public string Icon1 { get; set; } = "\uf30c";
