@@ -19,9 +19,9 @@
         <ToolbarItem Text="Show" Command="{Binding ShowCtlsCommand}" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
-        <StackLayout Orientation="Vertical">
-            <CollectionView x:Name="ItemsCollectionView" SelectedItem="{Binding SelectedItem}"
+    <StackLayout Orientation="Vertical">
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+            <CollectionView x:Name="ItemsCollectionView" SelectedItem="{Binding SelectedItem}" 
                 ItemsSource="{Binding Items}" SelectionMode="Single">
                 <d:CollectionView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
@@ -31,59 +31,91 @@
                         <x:String>Fourth Item</x:String>
                         <x:String>Fifth Item</x:String>
                         <x:String>Sixth Item</x:String>
-                     </x:Array>
+                    </x:Array>
                 </d:CollectionView.ItemsSource>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Text}" 
-                                d:Text="{Binding .}"
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                            <Label Text="{Binding Description}" 
-                                d:Text="Item descripton"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="2"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ShowCtlsCommand}" 
-                                    CommandParameter="{Binding}">
-                                </TapGestureRecognizer>
-                                <TapGestureRecognizer NumberOfTapsRequired="1"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTappedCommand}" 
-                                    CommandParameter="{Binding}">
-                                </TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
+                       <SwipeView x:Name="swipeView" >
+                           <!--
+                            SwipeStarted="OnSwipeStarted"
+                            SwipeChanging="OnSwipeChanging"
+                            SwipeEnded="OnSwipeEnded"
+                            CloseRequested="OnCloseRequested"
+                           -->
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Favorite" 
+                                        BackgroundColor="LightGreen"
+                                  Command="{Binding Source={x:Reference BrowseItemsPage}, Path=BindingContext.SwipeLeftCommand}"
+                                        CommandParameter="{Binding}" 
+                                     IconImageSource="favorite.png" />
+
+                                <SwipeItem Text="Delete" IconImageSource="delete.png"
+                                        BackgroundColor="LightPink"
+                                        Command="{Binding SwipeLeftCommand}"
+                                        CommandParameter="delete" />
+
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <StackLayout>
+                            <!--
+                        <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                            <Label Text="{Binding Text}" d:Text="{Binding .}" Grid.Row="0" LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                            <Label Text="{Binding Description}" d:Text="{Binding .}" Grid.Row="1" LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+
+                        </Grid>
+                            -->
+                            <StackLayout Padding="10">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ShowCtlsCommand}" 
+                                        CommandParameter="{Binding}">
+                                    </TapGestureRecognizer>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTappedCommand}" 
+                                        CommandParameter="{Binding}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="{Binding Text}" d:Text="{Binding .}" LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                <Label Text="{Binding Description}" d:Text="Item descripton"
+                                    LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13" />
+                                </StackLayout>
                         </StackLayout>
-                    </DataTemplate>
+                        </SwipeView>
+                </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Label Text="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, 
-                StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
-            <Label Text="{Binding Source={x:Reference BrowseItemsPage}, 
-                Path=BindingContext.ItemTappedCommand,
-                StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
-            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCtlsVisible}" >
-                <Button Text="{Binding Icon1}" FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" />
-                <Image BackgroundColor="#D1D1D1">
-                    <Image.Source>
-                        <FontImageSource Glyph="&#xf30c;"
-                            FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" Size="44" />
-                    </Image.Source>
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="2"
-                             Command="{Binding ItemTappedCommand}"  >
-                            <!--    Tapped="OnItemSelected" > -->
-                        </TapGestureRecognizer>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Button Text="Up" />
-                <Button Text="Down" />
-                <Button Text="Del" />
-                <Button Text="Cls" />
-            </StackLayout>
+        </RefreshView> 
+        <Label Text="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, 
+            StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
+        <Label Text="{Binding Source={x:Reference BrowseItemsPage}, 
+            Path=BindingContext.ItemTappedCommand,
+            StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCtlsVisible}" >
+            <Button Text="{Binding Icon1}" FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" />
+            <Image BackgroundColor="#D1D1D1">
+                <Image.Source>
+                    <FontImageSource Glyph="&#xf30c;"
+                        FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" Size="44" />
+                </Image.Source>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="2"
+                        Command="{Binding ItemTappedCommand}"  >
+                    </TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Button Text="Up" />
+            <Button Text="Down" />
+            <Button Text="Del" />
+            <Button Text="Cls" />
         </StackLayout>
-    </RefreshView> 
+    </StackLayout>
 </ContentPage>

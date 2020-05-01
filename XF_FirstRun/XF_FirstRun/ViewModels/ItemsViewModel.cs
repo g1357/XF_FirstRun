@@ -14,6 +14,7 @@ namespace XF_FirstRun.ViewModels
     {
         // Сервис навигации между страницами
         private INavigation _navigation;
+        public ObservableCollection<Item> _items;
         public ObservableCollection<Item> Items { get; set; }
 
         public string Icon1 { get; set; } = "\uf30c";
@@ -44,6 +45,7 @@ namespace XF_FirstRun.ViewModels
         public Command AddItemCommand { get; private set; }
         public Command ShowCtlsCommand { get; private set; }
         public Command ItemTappedCommand { get; private set; }
+        public Command SwipeLeftCommand { get; private set; }
 
         public bool _debug { get; private set; } = false;
         public ItemsViewModel(INavigation navigation)
@@ -51,7 +53,14 @@ namespace XF_FirstRun.ViewModels
             _navigation = navigation;
 
             Title = "Browse";
+            var items = DataStore.GetItemsAsync(true).Result;
+
             Items = new ObservableCollection<Item>();
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             AddItemCommand = new Command(async () =>
             {
@@ -75,6 +84,13 @@ namespace XF_FirstRun.ViewModels
                 //var item = Items[1]; //(Item)layout.BindingContext;
                 SelectedItem = item;
                 await _navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            });
+            SwipeLeftCommand = new Command<object>(async (item) =>
+            {
+                //var layout = (BindableObject)sender;
+                //var item = Items[1]; //(Item)layout.BindingContext;
+                //SelectedItem = item;
+                //await _navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
             });
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
