@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:XF_FirstRun.ViewModels" 
              xmlns:helper="clr-namespace:XF_FirstRun.Helpers"
+             xmlns:behavior="clr-namespace:XF_FirstRun.Behaviors"
              mc:Ignorable="d"
              x:Class="XF_FirstRun.Views.ItemsPage"
              Title="{Binding Title}"
@@ -36,6 +37,20 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                        <SwipeView x:Name="swipeView" >
+                            <SwipeView.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="SwipeStarted"
+                                        Command="{Binding Source={x:Reference BrowseItemsPage}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                                <behavior:EventToCommandBehavior EventName="SwipeChanging"
+                                        Command="{Binding Source={x:Reference BrowseItemsPage}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                                <behavior:EventToCommandBehavior EventName="SwipeEnded"
+                                        Command="{Binding Source={x:Reference BrowseItemsPage}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                                <behavior:EventToCommandBehavior EventName="CloseRequested"
+                                        Command="{Binding Source={x:Reference BrowseItemsPage}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                            </SwipeView.Behaviors>
                            <!--
                             SwipeStarted="OnSwipeStarted"
                             SwipeChanging="OnSwipeChanging"
