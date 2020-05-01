@@ -19,8 +19,8 @@
         <ToolbarItem Text="Show" Command="{Binding ShowCtlsCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Orientation="Vertical">
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <StackLayout>
             <CollectionView x:Name="ItemsCollectionView" SelectedItem="{Binding SelectedItem}" 
                 ItemsSource="{Binding Items}" SelectionMode="Single">
                 <d:CollectionView.ItemsSource>
@@ -42,35 +42,18 @@
                             SwipeEnded="OnSwipeEnded"
                             CloseRequested="OnCloseRequested"
                            -->
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Favorite" 
-                                        BackgroundColor="LightGreen"
-                                  Command="{Binding Source={x:Reference BrowseItemsPage}, Path=BindingContext.SwipeLeftCommand}"
-                                        CommandParameter="{Binding}" 
-                                     IconImageSource="favorite.png" />
-
-                                <SwipeItem Text="Delete" IconImageSource="delete.png"
-                                        BackgroundColor="LightPink"
-                                        Command="{Binding SwipeLeftCommand}"
-                                        CommandParameter="delete" />
-
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <StackLayout>
-                            <!--
-                        <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                            <Label Text="{Binding Text}" d:Text="{Binding .}" Grid.Row="0" LineBreakMode="NoWrap" 
-                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-                            <Label Text="{Binding Description}" d:Text="{Binding .}" Grid.Row="1" LineBreakMode="NoWrap" 
-                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-
-                        </Grid>
-                            -->
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Favorite" IconImageSource="favorite.png"
+                                        Command="{Binding Source={x:Reference BrowseItemsPage}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" 
+                                        BackgroundColor="LightGreen" />
+                                    <SwipeItem Text="Delete" IconImageSource="delete.png"
+                                        Command="{Binding Source={x:Reference BrowseItemsPage}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" 
+                                        BackgroundColor="LightPink" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
                             <StackLayout Padding="10">
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="2"
@@ -87,35 +70,36 @@
                                 <Label Text="{Binding Description}" d:Text="Item descripton"
                                     LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}"
                                     FontSize="13" />
-                                </StackLayout>
-                        </StackLayout>
-                        </SwipeView>
-                </DataTemplate>
+                            </StackLayout>
+                       </SwipeView>
+                    </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </RefreshView> 
-        <Label Text="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, 
-            StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
-        <Label Text="{Binding Source={x:Reference BrowseItemsPage}, 
-            Path=BindingContext.ItemTappedCommand,
-            StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
-        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCtlsVisible}" >
-            <Button Text="{Binding Icon1}" FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" />
-            <Image BackgroundColor="#D1D1D1">
-                <Image.Source>
-                    <FontImageSource Glyph="&#xf30c;"
-                        FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" Size="44" />
-                </Image.Source>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="2"
-                        Command="{Binding ItemTappedCommand}"  >
-                    </TapGestureRecognizer>
-                </Image.GestureRecognizers>
-            </Image>
-            <Button Text="Up" />
-            <Button Text="Down" />
-            <Button Text="Del" />
-            <Button Text="Cls" />
+            <Label Text="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, 
+                StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
+            <Label Text="{Binding Source={x:Reference BrowseItemsPage}, 
+                Path=BindingContext.ItemTappedCommand,
+                StringFormat='{0}'}" IsVisible="{Binding _debug, Converter={StaticResource BoolToString}}" />
+            <ScrollView Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCtlsVisible}" >
+                <Button Text="{Binding Icon1}" FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" />
+                <Image BackgroundColor="#D1D1D1">
+                    <Image.Source>
+                        <FontImageSource Glyph="&#xf30c;"
+                            FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}" Size="44" />
+                    </Image.Source>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="2"
+                            Command="{Binding ItemTappedCommand}"  >
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Button Text="Up" />
+                <Button Text="Down" />
+                <Button Text="Del" />
+                <Button Text="Cls" />
+            </StackLayout>
+            </ScrollView>
         </StackLayout>
-    </StackLayout>
+    </RefreshView>
 </ContentPage>

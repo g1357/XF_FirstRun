@@ -41,7 +41,6 @@ namespace XF_FirstRun.ViewModels
         }
 
         public Command LoadItemsCommand { get; set; }
-
         public Command AddItemCommand { get; private set; }
         public Command ShowCtlsCommand { get; private set; }
         public Command ItemTappedCommand { get; private set; }
@@ -53,14 +52,7 @@ namespace XF_FirstRun.ViewModels
             _navigation = navigation;
 
             Title = "Browse";
-            var items = DataStore.GetItemsAsync(true).Result;
-
             Items = new ObservableCollection<Item>();
-            foreach (var item in items)
-            {
-                Items.Add(item);
-            }
-
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             AddItemCommand = new Command(async () =>
             {
