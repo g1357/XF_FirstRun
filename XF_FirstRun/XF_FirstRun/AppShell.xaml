@@ -7,8 +7,9 @@
        mc:Ignorable="d"
        xmlns:local="clr-namespace:XF_FirstRun.Views"
        Title="XF_FirstRun"
-       x:Class="XF_FirstRun.AppShell">
-
+       x:Class="XF_FirstRun.AppShell"
+       x:Name="TopShell">
+    
     <!-- 
         Styles and Resources 
     -->
@@ -37,7 +38,7 @@
              <ShellContent Route="cats" Title="List1" Icon="cat.png"
                 ContentTemplate="{DataTemplate views:ListView1Page}" />
         </Tab>
-        <Tab Title="About" Icon="tab_about.png">
+        <Tab Title="About" Icon="tab_about.png" >
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
     </FlyoutItem>
@@ -70,9 +71,12 @@
     </Shell.MenuItemTemplate>
 
     -->
-    <ShellContent Route="ListView1"
-                  Title="List View 1"
-                  Icon="info.png"
+    <ShellContent Route="ListView1" Icon="info.png" Title="List View 1"
                   ContentTemplate="{DataTemplate views:ListView1Page}" />
+    <ShellContent Route="settings" Icon="settings.png" Title="Settings"
+                  ContentTemplate="{DataTemplate views:SettingsPage}" />
+    <MenuItem Text="Settings 2" IconImageSource="settings.png"
+              Command="{Binding SettingsCommand}" 
+               />
 
 </Shell>

@@ -151,6 +151,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\favorite.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings.png" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties XamarinHotReloadDebuggerTimeoutExceptionXF_FirstRuniOSHideInfoBar="True" />
