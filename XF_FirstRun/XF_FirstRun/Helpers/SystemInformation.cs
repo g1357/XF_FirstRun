@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -38,6 +39,44 @@ namespace XF_FirstRun.Helpers
         /// Используется, что сообщить о новых возможностях приложения.
         /// </summary>
         public static bool IsAppUpdated { get; }
+        public static CultureInfo AppCulture {
+            get => Resx.AppResx.Culture;
+            set
+            {
+                if (value != Resx.AppResx.Culture)
+                {
+                    Resx.AppResx.Culture = value;
+                    _appLang = Resx.AppResx.Culture.Name;
+                }
+            }
+        }
+        private static string _appLang; 
+        public static string AppLang {
+            get {
+                if (_appLang == null)
+                {
+                    if (Application.Current.Properties.TryGetValue("AppLang", out object appLang))
+                    {
+                        _appLang = (string)appLang;
+                        Resx.AppResx.Culture = new CultureInfo(_appLang);
+                    }
+                    else
+                    {
+                        _appLang = AppCulture.Name;
+                        Application.Current.Properties["AppLang"] = _appLang;
+                    }
+                }
+                return _appLang;
+            }
+            set
+            {
+                if (value != _appLang)
+                {
+                    _appLang = value;
+                    Resx.AppResx.Culture = new CultureInfo(_appLang);
+                }
+            }
+        }
 
         /// <summary>
         /// Инициализация статических членов класса <see cref="SystemInformation"/>
@@ -49,6 +88,8 @@ namespace XF_FirstRun.Helpers
             ApplicationVersionString = AppInfo.VersionString;
             IsFirstRun = DetectIfFirstRun();
             IsAppUpdated = DetectIfAppUpdated();
+            _appLang = DetectLanguage();
+
         }
         private static bool DetectIfFirstRun()
         {
@@ -76,6 +117,23 @@ namespace XF_FirstRun.Helpers
 
             Application.Current.Properties["CurrentVersion"] = ApplicationVersionString;
             return true;
+        }
+        private static string DetectLanguage()
+        {
+            string lang;
+            if (Application.Current.Properties.TryGetValue("AppLang", out object appLang))
+            {
+                lang = (string)appLang;
+                var newCulture = new CultureInfo(lang);
+                Resx.AppResx.Culture = newCulture;
+                System.Globalization.CultureInfo.CurrentCulture = newCulture;
+            }
+            else
+            {
+                lang = System.Globalization.CultureInfo.CurrentCulture.Name;
+                Application.Current.Properties["AppLang"] = lang;
+            }
+            return lang;
         }
     }
 }
