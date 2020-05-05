@@ -12,6 +12,10 @@ namespace XF_FirstRun
 {
     public partial class App : Application
     {
+        /// <summary>
+        /// Текущий язык приложения
+        /// </summary>
+        public static string CurrentLanguage ="EN";
 
         public App()
         {
@@ -19,6 +23,7 @@ namespace XF_FirstRun
 
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
+            CurrentLanguage = SystemInformation.AppLang;
         }
 
         protected override void OnStart()

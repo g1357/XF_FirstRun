@@ -5,13 +5,17 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
+using XF_FirstRun.Localization;
 using XF_FirstRun.Models;
+using XF_FirstRun.Resx;
 using XF_FirstRun.Services;
 
 namespace XF_FirstRun.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public LocalizedResources Resources { get; private set; }
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;
@@ -28,6 +32,10 @@ namespace XF_FirstRun.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        public BaseViewModel()
+        {
+            Resources = new LocalizedResources(typeof(AppResx), App.CurrentLanguage);
+        }
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
@@ -45,11 +53,7 @@ namespace XF_FirstRun.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

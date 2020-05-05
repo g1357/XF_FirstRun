@@ -117,18 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_txt" xml:space="preserve">
+    <value>О приложении</value>
+  </data>
+  <data name="Browse_txt" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
   <data name="Hello_msg" xml:space="preserve">
     <value>Здравствуй, Мiр!</value>
     <comment>Hello message</comment>
+  </data>
+  <data name="List0_txt" xml:space="preserve">
+    <value>Список № 0</value>
+  </data>
+  <data name="List1_txt" xml:space="preserve">
+    <value>Список № 1</value>
+  </data>
+  <data name="List_View_1_txt" xml:space="preserve">
+    <value>Представление списка 1</value>
   </data>
   <data name="Ok_btm" xml:space="preserve">
     <value>Ok</value>
     <comment>Ok button</comment>
   </data>
+  <data name="PickLng" xml:space="preserve">
+    <value>Выбирите Ваш язык</value>
+  </data>
   <data name="SelectLang_txt" xml:space="preserve">
     <value>Выбирите язык интерфайса:</value>
   </data>
   <data name="SettingsPage_title" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Settings_Title_txt" xml:space="preserve">
+    <value>Страница настроек</value>
+  </data>
+  <data name="Settings_txt" xml:space="preserve">
     <value>Настройки</value>
   </data>
   <data name="Setting_Header_txt" xml:space="preserve">

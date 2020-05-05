@@ -61,6 +61,24 @@ namespace XF_FirstRun.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string About_txt {
+            get {
+                return ResourceManager.GetString("About_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        internal static string Browse_txt {
+            get {
+                return ResourceManager.GetString("Browse_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello, World!.
         /// </summary>
         internal static string Hello_msg {
@@ -70,11 +88,47 @@ namespace XF_FirstRun.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List View 1.
+        /// </summary>
+        internal static string List_View_1_txt {
+            get {
+                return ResourceManager.GetString("List_View_1_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List # 0.
+        /// </summary>
+        internal static string List0_txt {
+            get {
+                return ResourceManager.GetString("List0_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List #1.
+        /// </summary>
+        internal static string List1_txt {
+            get {
+                return ResourceManager.GetString("List1_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string Ok_btm {
             get {
                 return ResourceManager.GetString("Ok_btm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your language:.
+        /// </summary>
+        internal static string PickLng {
+            get {
+                return ResourceManager.GetString("PickLng", resourceCulture);
             }
         }
         
@@ -93,6 +147,24 @@ namespace XF_FirstRun.Resx {
         internal static string Setting_Header_txt {
             get {
                 return ResourceManager.GetString("Setting_Header_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings Page.
+        /// </summary>
+        internal static string Settings_Title_txt {
+            get {
+                return ResourceManager.GetString("Settings_Title_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string Settings_txt {
+            get {
+                return ResourceManager.GetString("Settings_txt", resourceCulture);
             }
         }
         

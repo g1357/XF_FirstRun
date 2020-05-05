@@ -6,13 +6,17 @@
              xmlns:behavior="clr-namespace:XF_FirstRun.Behaviors"
              xmlns:resx="clr-namespace:XF_FirstRun.Resx"
              mc:Ignorable="d"
-             Title="{Binding Title}"
+             Title="{Binding Resources[Settings_Title_txt]}"
              x:Class="XF_FirstRun.Views.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{x:Static resx:AppResx.Setting_Header_txt}" x:Name="Label1"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Resources[PickLng]}" />
+            <Picker ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+
+            <!--
             <Picker x:Name="picker" Title="{x:Static resx:AppResx.SelectLang_txt}" SelectedItem="{Binding SelectedLang, Mode=TwoWay}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
@@ -25,6 +29,7 @@
                         Command="{Binding LangChangeCommand}" />
                 </Picker.Behaviors>
             </Picker>
+            -->
             <Label Text="{Binding CultureName, StringFormat='Culture Name = {0}.', Mode=OneWay}" />
             <Label Text="{Binding CultureDisplay, StringFormat='Culture Display Name = {0}.', Mode=OneWay}" />
             <Label Text="{Binding SelectedLang, StringFormat='Selected Language = {0}.', Mode=OneWay}" />
