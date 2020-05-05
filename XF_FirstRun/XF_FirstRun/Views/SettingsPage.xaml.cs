@@ -21,7 +21,7 @@ namespace XF_FirstRun.Views
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new SettingsViewModel(Navigation);
+            BindingContext = viewModel = new SettingsViewModel(this, Navigation);
         }
     }
 }

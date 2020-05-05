@@ -28,6 +28,7 @@ namespace XF_FirstRun
 
         protected override void OnSleep()
         {
+
         }
 
         protected override void OnResume()
