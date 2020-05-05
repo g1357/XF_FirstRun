@@ -124,8 +124,8 @@ namespace XF_FirstRun.ViewModels
         private void SetLanguage()
         {
             App.CurrentLanguage = SelectedLanguage;
-            MessagingCenter.Send<object, CultureChangedMessage>(this,
-                string.Empty, new CultureChangedMessage(SelectedLanguage));
+            MessagingCenter.Send<object, string>(this,
+                "Restart", "Restart");
         }
     }
 }

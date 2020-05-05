@@ -24,6 +24,9 @@ namespace XF_FirstRun
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
             //CurrentLanguage = SystemInformation.AppLang;
+            MessagingCenter.Subscribe<object, string>(this,
+                "Restart", Restart);
+
         }
 
         protected override void OnStart()
@@ -38,6 +41,16 @@ namespace XF_FirstRun
 
         protected override void OnResume()
         {
+        }
+
+        protected void Restart(object s, string str)
+        {
+            InitializeComponent();
+
+            DependencyService.Register<MockDataStore>();
+            MainPage = new AppShell();
+            //CurrentLanguage = SystemInformation.AppLang;
+
         }
     }
 }
