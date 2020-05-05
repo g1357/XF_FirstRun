@@ -160,7 +160,7 @@
     <comment>Header of Seetings Page</comment>
   </data>
   <data name="Test string" xml:space="preserve">
-    <value>Тестовая строка</value>
+    <value>Test string</value>
   </data>
   <data name="Test_msg" xml:space="preserve">
     <value>Тестовое сообщение!</value>

@@ -18,7 +18,12 @@ namespace XF_FirstRun.Localization
 
         public string this[string key]
         {
-            get => ResourceManager.GetString(key, CurrentCultureInfo);
+            get
+            {
+                var res = ResourceManager.GetString(key, CurrentCultureInfo);
+                return res;
+            }
+
         }
 
         public LocalizedResources(Type resource, string language = null)

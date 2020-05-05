@@ -10,7 +10,7 @@
              x:Class="XF_FirstRun.Views.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{x:Static resx:AppResx.Setting_Header_txt}" x:Name="Label1"
+            <Label Text="{Binding Resources[Setting_Header_txt]}" x:Name="Label1"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Label Text="{Binding Resources[PickLng]}" />

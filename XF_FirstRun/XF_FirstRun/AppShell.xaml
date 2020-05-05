@@ -34,12 +34,12 @@
 <!-- ===========================================100============================================= -->
     <!-- Your Pages -->
     <FlyoutItem Route="animals" Title="Animals" FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="{x:Static resx:AppResx.Browse_txt}" Icon="tab_feed.png">
-            <ShellContent Title="{x:Static resx:AppResx.List0_txt}" ContentTemplate="{DataTemplate local:ItemsPage}" />
-            <ShellContent Route="cats" Title="{x:Static resx:AppResx.List1_txt}" Icon="cat.png"
+        <Tab Title="{Binding Resources[Browse_txt]}" Icon="tab_feed.png">
+            <ShellContent Title="{Binding Resources[List0_txt]}" ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Route="cats" Title="{Binding Resources[List1_txt]}" Icon="cat.png"
                 ContentTemplate="{DataTemplate views:ListView1Page}" />
         </Tab>
-        <Tab Title="{x:Static resx:AppResx.About_txt}" Icon="tab_about.png" >
+        <Tab Title="{Binding Resources[About_txt]}" Icon="tab_about.png" >
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
     </FlyoutItem>
@@ -72,11 +72,11 @@
     </Shell.MenuItemTemplate>
 
     -->
-    <ShellContent Route="ListView1" Icon="info.png" Title="{x:Static resx:AppResx.List_View_1_txt}"
+    <ShellContent Route="ListView1" Icon="info.png" Title="{Binding Resources[List_View_1_txt]}"
                   ContentTemplate="{DataTemplate views:ListView1Page}" />
-    <ShellContent Route="settings" Icon="settings.png" Title="{x:Static resx:AppResx.Settings_txt}"
+    <ShellContent Route="settings" Icon="settings.png" Title="{Binding Resources[Settings_txt]}"
                   ContentTemplate="{DataTemplate views:SettingsPage}" />
-    <MenuItem Text="{x:Static resx:AppResx.Settings_txt}" IconImageSource="settings.png"
+    <MenuItem Text="{Binding Resources[Settings_txt]}" IconImageSource="settings.png"
               Command="{Binding SettingsCommand}" 
                />
 
