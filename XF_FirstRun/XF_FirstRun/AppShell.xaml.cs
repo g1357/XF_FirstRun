@@ -14,7 +14,6 @@ namespace XF_FirstRun
             InitializeComponent();
 
             BindingContext = new AppShellViewModel(this, Navigation);
-            //_ = Navigation.PushModalAsync(new FirstRunPage());
         }
     }
 }

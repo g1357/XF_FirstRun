@@ -1,27 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace XF_FirstRun.Models
 {
     /// <summary>
-    /// Товар
+    /// Сптсок покупок
     /// </summary>
-    public class Item
+    public class ShoppingList
     {
         /// <summary>
-        /// Идентификатор товара
+        /// Идентификатор списка
         /// </summary>
         public string Id { get; set; }
         /// <summary>
-        /// Название товара
+        /// Название списка
         /// </summary>
         public string Name { get; set; }
-        public string Text { get; set; }
         /// <summary>
-        /// Примечания к товару
+        /// Примечания к списку
         /// </summary>
-        public string Notes { get; set; }
+        public string Note { get; set; }
         /// <summary>
-        /// Описание товара
+        /// Описание списка
         /// </summary>
         public string Description { get; set; }
     }

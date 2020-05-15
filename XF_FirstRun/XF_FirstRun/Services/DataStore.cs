@@ -6,11 +6,14 @@ using XF_FirstRun.Models;
 
 namespace XF_FirstRun.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    /// <summary>
+    /// Сервис хранения данных.
+    /// </summary>
+    public class DataStore : IDataStore<Item>
     {
         private List<Item> items = null;
 
-        public MockDataStore()
+        public DataStore()
         {
             if (items != null) return;
 
