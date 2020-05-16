@@ -13,10 +13,12 @@ namespace XF_FirstRun.Models
         /// Идентификатор отдела
         /// </summary>
         public string Id { get; set; }
+
         /// <summary>
         /// Название отдела
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// Описание отдела
         /// </summary>

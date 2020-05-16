@@ -12,18 +12,26 @@ namespace XF_FirstRun.Models
         /// <summary>
         /// Единицы измерения
         /// </summary>
-        public Unit[] Units { get; set; }
+        public List<Unit> Units { get; set; }
+
         /// <summary>
         /// Отделы
         /// </summary>
-        public Department[] Departments { get; set; }
+        public List<Department> Departments { get; set; }
+
         /// <summary>
         /// Списки покупок
         /// </summary>
-        public ShoppingList[] ShoopingLists { get; set; }
+        public List<ShoppingList> ShoopingLists { get; set; }
+
         /// <summary>
         /// Товары
         /// </summary>
-        public Item[] Items { get; set; }
+        public List<ShoppingListDetails> Details { get; set; }
+
+        /// <summary>
+        /// Словарь деиальной информации для списков покупок
+        /// </summary>
+        public Dictionary<string, List<Item>> DetailsDictionary { get; set; }
     }
 }
