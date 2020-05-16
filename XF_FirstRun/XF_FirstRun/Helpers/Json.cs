@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace XF_FirstRun.Helpers
@@ -21,7 +21,7 @@ namespace XF_FirstRun.Helpers
         {
             return await Task.Run<T>(() =>
             {
-                return JsonConvert.DeserializeObject<T>(json);
+                return JsonSerializer.Deserialize<T>(json);
             });
         }
         /// <summary>
@@ -33,7 +33,7 @@ namespace XF_FirstRun.Helpers
         {
             return await Task.Run<string>(() =>
             {
-                return JsonConvert.SerializeObject(obj);
+                return JsonSerializer.Serialize(obj);
             });
         }
     }
