@@ -259,6 +259,15 @@ namespace XF_FirstRun.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shoppings Lists.
+        /// </summary>
+        internal static string ShoppingLists_txt {
+            get {
+                return ResourceManager.GetString("ShoppingLists_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test message!.
         /// </summary>
         internal static string Test_msg {

@@ -72,7 +72,22 @@ namespace XF_FirstRun.Services
         }
         public async Task SetDataAsync(IEnumerable<Item> items)
         {
-            this.items = new List<Item>(items);
+            await Task.Run(() =>
+           {
+               this.items = new List<Item>(items);
+           });
+        }
+        public async Task MoveUpAsync(Item item)
+        {
+            await Task.Run(() =>
+            {
+            });
+        }
+        public async Task MoveDownAsync(Item item)
+        {
+            await Task.Run(() =>
+            {
+            });
         }
 
     }

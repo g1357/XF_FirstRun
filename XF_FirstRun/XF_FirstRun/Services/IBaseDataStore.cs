@@ -15,7 +15,7 @@ namespace XF_FirstRun.Services
         /// </summary>
         /// <param name="item">Элемент</param>
         /// <returns>Успешность операции</returns>
-        Task<bool> AddAsync(T item);
+        Task<bool> AddItemAsync(T item);
         /// <summary>
         /// Обновить элемент в хранилище
         /// </summary>
@@ -39,7 +39,10 @@ namespace XF_FirstRun.Services
         /// </summary>
         /// <param name="forceRefresh">Принудительное обновление</param>
         /// <returns>Перечисление элементов</returns>
-        Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
-        Task SetDataAsync(IEnumerable<T> items);
+        Task<IEnumerable<T>> GetAllItemsAsync(bool forceRefresh = false);
+        Task<bool> SetDataAsync(IEnumerable<T> items);
+        Task<bool> MoveItemUpAsync(T item);
+        Task<bool> MovItemDownAsync(T item);
+        Task SetDemoDataAsync();
     }
 }

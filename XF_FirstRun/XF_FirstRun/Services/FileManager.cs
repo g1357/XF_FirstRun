@@ -129,10 +129,7 @@ namespace XF_FirstRun.Services
         /// <returns>Считанный текст</returns>
         public async Task<string> ReadAllTextAsync()
         {
-            return await Task.Run<string>(() =>
-            {
-                return File.ReadAllText(FilePath);
-            });
+            return await ReadAllTextAsync(FilePath);
         }
 
         public async Task SetDirectoryAsync(string directory)
@@ -167,5 +164,6 @@ namespace XF_FirstRun.Services
                 }
             });
         }
+
     }
 }

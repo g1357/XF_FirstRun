@@ -10,12 +10,12 @@ namespace XF_FirstRun.Services
     /// Базовый сервис хранения даггых
     /// </summary>
     /// <typeparam name="T">Класс модели</typeparam>
-    public class BaseDataStore<T> where T : IItem // : IBaseDataStore<T>
+    abstract public class BaseDataStore<T> : IBaseDataStore<T> where T : IItem
     {
         /// <summary>
         /// Список элементов
         /// </summary>
-        private List<T> items = null;
+        internal List<T> items = null;
 
         /// <summary>
         /// Конструктор класса
@@ -29,7 +29,7 @@ namespace XF_FirstRun.Services
         /// </summary>
         /// <param name="item">Новый элемент</param>
         /// <returns>Успешность операции</returns>
-        public async Task<bool> AddAsync(T item)
+        public async Task<bool> AddItemAsync(T item)
         {
             items.Add(item);
 
@@ -41,7 +41,7 @@ namespace XF_FirstRun.Services
         /// </summary>
         /// <param name="item">Обновлённый элемент</param>
         /// <returns>Успешность операции</returns>
-        public async Task<bool> UpdateAsync(T item)
+        public async Task<bool> UpdateItemAsync(T item)
         {
             //var oldItem = items.Where((T arg) => arg.Id == item.Id).FirstOrDefault();
             //items.Remove(oldItem);
@@ -61,7 +61,7 @@ namespace XF_FirstRun.Services
         /// </summary>
         /// <param name="id">Идентификатор элемента</param>
         /// <returns>Успешность операции</returns>
-        public async Task<bool> DeleteAsync(string id)
+        public async Task<bool> DeleteItemAsync(string id)
         {
             bool result = false;
             var oldItem = items.Where((T arg) => arg.Id == id).FirstOrDefault();
@@ -78,7 +78,7 @@ namespace XF_FirstRun.Services
         /// </summary>
         /// <param name="id">Идентификатор элемента</param>
         /// <returns>Элемент</returns>
-        public async Task<T> GetAsync(string id)
+        public async Task<T> GetItemAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
@@ -88,21 +88,66 @@ namespace XF_FirstRun.Services
         /// </summary>
         /// <param name="forceRefresh">Принудительное обнос=вление</param>
         /// <returns>Список элементов</returns>
-        public async Task<IEnumerable<T>> GetAllAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<T>> GetAllItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }
 
         /// <summary>
-        /// Установить весь список элементов
+        /// Установка нового списока элементов
         /// </summary>
         /// <param name="items">Все элементы</param>
         /// <returns>Успешность операции</returns>
-        public async Task<bool> SetAsync(IEnumerable<T> items)
+        public async Task<bool> SetDataAsync(IEnumerable<T> items)
         {
             this.items = new List<T>(items);
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Перемещение элемента на один вверх
+        /// </summary>
+        /// <param name="item">Элемент</param>
+        /// <returns>Перемещение успешно выполнено</returns>
+        public async Task<bool> MoveItemUpAsync(T item)
+        {
+            return await Task.Run(() =>
+            {
+                bool result = false;
+                var index = items.FindIndex((T arg) => arg.Id == item.Id);
+                if (index > 0)
+                {
+                    T tempItem = items[index - 1];
+                    items[index - 1] = items[index];
+                    items[index] = tempItem;
+                    result = true;
+                }
+                return result;
+            });
+        }
+
+        /// <summary>
+        /// Перемещение элемента на один вниз
+        /// </summary>
+        /// <param name="item">Элемент</param>
+        /// <returns>Перемещение успешно выполнено</returns>
+        public async Task<bool> MovItemDownAsync(T item)
+        {
+            return await Task.Run(() =>
+            {
+                bool result = false;
+                var index = items.FindIndex((T arg) => arg.Id == item.Id);
+                if (index >= 0 && index < items.Count - 2)
+                {
+                    T tempItem = items[index + 1];
+                    items[index + 1] = items[index];
+                    items[index] = tempItem;
+                    result = true;
+                }
+                return result;
+            });
+        }
+
+        abstract public Task SetDemoDataAsync();
     }
 }

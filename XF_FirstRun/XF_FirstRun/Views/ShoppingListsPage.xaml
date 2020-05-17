@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:XF_FirstRun.ViewModels" 
+             xmlns:helper="clr-namespace:XF_FirstRun.Helpers"
+             xmlns:behavior="clr-namespace:XF_FirstRun.Behaviors"
+             mc:Ignorable="d"
+             x:Class="XF_FirstRun.Views.ShoppingListsPage"
+             Title="{Binding Title}"
+             x:Name="ShoppingLists">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helper:BoolToStringConverter x:Key="BoolToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <StackLayout>
+            <CollectionView x:Name="ItemsCollectionView" SelectedItem="{Binding SelectedItem}" 
+                ItemsSource="{Binding Items}" SelectionMode="Single">
+                <d:CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>First Item</x:String>
+                        <x:String>Second Item</x:String>
+                        <x:String>Third Item</x:String>
+                        <x:String>Fourth Item</x:String>
+                        <x:String>Fifth Item</x:String>
+                        <x:String>Sixth Item</x:String>
+                    </x:Array>
+                </d:CollectionView.ItemsSource>
+               <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!--
+                      <SwipeView x:Name="swipeView" >
+                            <SwipeView.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="SwipeStarted"
+                                        Command="{Binding Source={x:Reference ShoppingLists}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                                <behavior:EventToCommandBehavior EventName="SwipeChanging"
+                                        Command="{Binding Source={x:Reference ShoppingLists}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                                <behavior:EventToCommandBehavior EventName="SwipeEnded"
+                                        Command="{Binding Source={x:Reference ShoppingLists}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                                <behavior:EventToCommandBehavior EventName="CloseRequested"
+                                        Command="{Binding Source={x:Reference ShoppingLists}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" />
+                            </SwipeView.Behaviors>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Favorite" IconImageSource="favorite.png"
+                                        Command="{Binding Source={x:Reference ShoppingLists}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" 
+                                        BackgroundColor="LightGreen" />
+                                    <SwipeItem Text="Delete" IconImageSource="delete.png"
+                                        Command="{Binding Source={x:Reference ShoppingLists}, 
+                                        Path=BindingContext.SwipeLeftCommand}" CommandParameter="{Binding}" 
+                                        BackgroundColor="LightPink" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+-->
+                        <StackLayout Padding="10">
+                            <!--
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ItemsViewModel}}, Path=ShowCtlsCommand}" 
+                                        CommandParameter="{Binding}">
+                                    </TapGestureRecognizer>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ItemsViewModel}}, Path=ItemTappedCommand}" 
+                                        CommandParameter="{Binding}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            -->
+                                <Label Text="{Binding Name}" d:Text="{Binding .}" LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                <Label Text="{Binding Description}" d:Text="Item descripton"
+                                    LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13" />
+                            </StackLayout>
+                        <!--
+                        </SwipeView>
+                        -->
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </RefreshView>
+</ContentPage>

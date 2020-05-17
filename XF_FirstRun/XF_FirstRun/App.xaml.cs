@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 using XF_FirstRun.Helpers;
@@ -24,6 +25,7 @@ namespace XF_FirstRun
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<DataStore>();
             MainPage = new AppShell();
 
             MessagingCenter.Subscribe<object, string>(this,
@@ -61,14 +63,32 @@ namespace XF_FirstRun
             if (fileExist)
             {
                 string text = await fileService.ReadAllTextAsync();
-                var dataService = DependencyService.Get<IDataStore<Item>>();
+                var dS = DependencyService.Get<IDataStore<Item>>();
                 var items = await Json.ToObjestAsync<List<Item>>(text);
-                await dataService.SetDataAsync(items);
+                await dS.SetDataAsync(items);
             }
             else
             {
                 // GetDemoData();
             }
+
+            var dataService = DependencyService.Get<DataStore>();
+            string ShoppingListFileName = "ShoppingLst.json";
+            fileExist = await fileService.FileExistAsync(ShoppingListFileName);
+            if (fileExist)
+            {
+                string text = await fileService.ReadAllTextAsync(ShoppingListFileName);
+                text = await fileService.ReadAllTextAsync("ShoppingLst.json");
+                var sl = await Json.ToObjestAsync<List<ShoppingList>>(text);
+                await dataService.ShoppingList.SetDataAsync(sl);
+            }
+            else
+            {
+                await dataService.ShoppingList.SetDemoDataAsync();
+            }
+
+
+
         }
 
         private async void SaveData()

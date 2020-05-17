@@ -186,6 +186,9 @@
   <data name="Setting_SaveButton_txt" xml:space="preserve">
     <value>Setup</value>
   </data>
+  <data name="ShoppingLists_txt" xml:space="preserve">
+    <value>Shoppings Lists</value>
+  </data>
   <data name="Test_msg" xml:space="preserve">
     <value>Test message!</value>
   </data>

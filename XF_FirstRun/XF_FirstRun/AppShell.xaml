@@ -3,10 +3,9 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       xmlns:views="clr-namespace:XF_FirstRun.Views"
+       xmlns:view="clr-namespace:XF_FirstRun.Views"
        xmlns:resx="clr-namespace:XF_FirstRun.Resx"
        mc:Ignorable="d"
-       xmlns:local="clr-namespace:XF_FirstRun.Views"
        Title="XF_FirstRun"
        x:Class="XF_FirstRun.AppShell"
        x:Name="TopShell">
@@ -35,12 +34,14 @@
     <!-- Your Pages -->
     <FlyoutItem Route="animals" Title="Animals" FlyoutDisplayOptions="AsMultipleItems">
         <Tab Title="{Binding Resources[Browse_txt]}" Icon="tab_feed.png">
-            <ShellContent Title="{Binding Resources[List0_txt]}" ContentTemplate="{DataTemplate local:ItemsPage}" />
-            <ShellContent Route="cats" Title="{Binding Resources[List1_txt]}" Icon="cat.png"
-                ContentTemplate="{DataTemplate views:ListView1Page}" />
+            <ShellContent Title="{Binding Resources[List0_txt]}" ContentTemplate="{DataTemplate view:ItemsPage}" />
+            <ShellContent Route="ShoppingLists" Title="{Binding Resources[ShoppingLists_txt]}" Icon="cat.png"
+                ContentTemplate="{DataTemplate view:ShoppingListsPage}" />
+            <ShellContent Route="cats" Title="{Binding Resources[ShoppingLists_txt]}" Icon="cat.png"
+                ContentTemplate="{DataTemplate view:ListView1Page}" />
         </Tab>
         <Tab Title="{Binding Resources[About_txt]}" Icon="tab_about.png" >
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:AboutPage}" />
         </Tab>
     </FlyoutItem>
     <!-- Optional Templates 
@@ -73,9 +74,9 @@
 
     -->
     <ShellContent Route="ListView1" Icon="info.png" Title="{Binding Resources[List_View_1_txt]}"
-                  ContentTemplate="{DataTemplate views:ListView1Page}" />
+                  ContentTemplate="{DataTemplate view:ListView1Page}" />
     <ShellContent Route="settings" Icon="settings.png" Title="{Binding Resources[Settings_txt]}"
-                  ContentTemplate="{DataTemplate views:SettingsPage}" />
+                  ContentTemplate="{DataTemplate view:SettingsPage}" />
     <MenuItem Text="{Binding Resources[Settings_txt]}" IconImageSource="settings.png"
               Command="{Binding SettingsCommand}" 
                />

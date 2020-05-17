@@ -41,5 +41,6 @@ namespace XF_FirstRun.Services
         /// <returns>Перечисление элементов</returns>
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
         Task SetDataAsync(IEnumerable<T> items);
+        //Task SetDemoDataAsync();
     }
 }
