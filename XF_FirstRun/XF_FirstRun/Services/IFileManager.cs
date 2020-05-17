@@ -16,5 +16,8 @@ namespace XF_FirstRun.Services
         Task WriteAllTextAsync(string text);
         Task<string> ReadAllTextAsync(string fileName);
         Task<string> ReadAllTextAsync();
+        Task SetDirectoryAsync(string directory);
+        Task DeleteDataAsync();
+
     }
 }

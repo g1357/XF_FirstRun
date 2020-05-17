@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using XF_FirstRun.Helpers;
 
 namespace XF_FirstRun.Services
 {
@@ -17,18 +18,44 @@ namespace XF_FirstRun.Services
         const string DefaultFileName = @"ShoppingList.json";
 
         /// <summary>
-        /// Полное имя файла доя сохранения данных.
+        /// Имя файла доя сохранения данных.
         /// </summary>
         string FileName;
+
+        /// <summary>
+        /// Полное имя файла доя сохранения данных.
+        /// </summary>
+        string FilePath;
+
+        /// <summary>
+        /// Имя каталога для хранения данных.
+        /// </summary>
+        string DirectoryName;
+
+        /// <summary>
+        /// Полное путь каталога для хранения данных.
+        /// </summary>
+        string DirectoryPath;
 
         /// <summary>
         /// Конструктор класса
         /// </summary>
         public FileManager()
         {
+            DirectoryName = SystemInformation.DirectoryName;
             var appData = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(appData);
-            FileName = Path.Combine(path,DefaultFileName);
+            DirectoryPath = Path.Combine(path, DirectoryName);
+            var exists = Directory.Exists(DirectoryPath);
+            if (!exists)
+            {
+                Directory.CreateDirectory(DirectoryPath);
+            }
+            if (string.IsNullOrEmpty(FileName))
+            {
+                FileName = DefaultFileName;
+            }
+            FilePath = Path.Combine(DirectoryPath, FileName);
         }
 
         /// <summary>
@@ -40,9 +67,8 @@ namespace XF_FirstRun.Services
         {
             return await Task.Run<bool>(() =>
             {
-                return File.Exists(fileName);
+                return File.Exists(Path.Combine(DirectoryPath, fileName));
             });
-
         }
         /// <summary>
         /// Асинхронная проверка наличия файла.
@@ -50,7 +76,7 @@ namespace XF_FirstRun.Services
         /// <returns>Существование файла</returns>
         public async Task<bool> FileExistAsync()
         {
-            return await this.FileExistAsync(FileName);
+            return await this.FileExistAsync(FilePath);
         }
         /// <summary>
         /// Асинхронная запись текста в файл.
@@ -58,11 +84,22 @@ namespace XF_FirstRun.Services
         /// <param name="filename">Полный путь файла</param>
         /// <param name="text">Сохраняемый текст</param>
         /// <returns>Успешность записи</returns>
-        public async Task WriteAllTextAsync(string filename, string text)
+        public async Task WriteAllTextAsync(string fileName, string text)
         {
             await Task.Run(() =>
             {
-                File.WriteAllText(filename, text);
+                try
+                {
+                    if (!Directory.Exists(DirectoryPath))
+                    {
+                        Directory.CreateDirectory(DirectoryPath);
+                    }
+                    File.WriteAllText(Path.Combine(DirectoryPath, fileName), text);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Exception: {ex.Message}!");
+                }
             });
         }
         /// <summary>
@@ -72,7 +109,7 @@ namespace XF_FirstRun.Services
         /// <returns>Успешность записи</returns>
         public async Task WriteAllTextAsync(string text)
         {
-            await this.WriteAllTextAsync(FileName, text);
+            await this.WriteAllTextAsync(FilePath, text);
         }
         /// <summary>
         /// Асинхронное чтение текста из файла
@@ -83,7 +120,7 @@ namespace XF_FirstRun.Services
         {
             return await Task.Run<string>(() =>
             {
-                return File.ReadAllText(fileName);
+                return File.ReadAllText(Path.Combine(DirectoryPath, fileName));
             });
         }
         /// <summary>
@@ -94,7 +131,40 @@ namespace XF_FirstRun.Services
         {
             return await Task.Run<string>(() =>
             {
-                return File.ReadAllText(FileName);
+                return File.ReadAllText(FilePath);
+            });
+        }
+
+        public async Task SetDirectoryAsync(string directory)
+        {
+            await Task.Run(() =>
+            {
+                var exists = Directory.Exists(DirectoryPath);
+                if (exists)
+                {
+                    Directory.Delete(DirectoryPath, true);
+                }
+                var appData = Environment.SpecialFolder.LocalApplicationData;
+                var path = Environment.GetFolderPath(appData);
+                DirectoryPath = Path.Combine(path, directory);
+                exists = Directory.Exists(DirectoryPath);
+                if (!exists)
+                {
+                    Directory.CreateDirectory(DirectoryPath);
+                }
+                FilePath = Path.Combine(DirectoryPath, FileName);
+            });
+        }
+
+        public async Task DeleteDataAsync()
+        {
+            await Task.Run(() =>
+            {
+                var exists = Directory.Exists(DirectoryPath);
+                if (exists)
+                {
+                    Directory.Delete(DirectoryPath, true);
+                }
             });
         }
     }

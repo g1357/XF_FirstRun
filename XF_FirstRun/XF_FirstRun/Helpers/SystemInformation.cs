@@ -13,6 +13,11 @@ namespace XF_FirstRun.Helpers
     public static class SystemInformation
     {
         /// <summary>
+        /// Имя каталога по умолчанию.
+        /// </summary>
+        const string DefaultDirectoryName = @"ShoppingList";
+
+        /// <summary>
         /// Возвращает значение имени приложения
         /// </summary>
         public static string ApplicationName { get; }
@@ -27,6 +32,33 @@ namespace XF_FirstRun.Helpers
         /// </summary>
         public static string ApplicationVersionString { get; }
 
+        private static string _DirectoryName = string.Empty;
+        public static string DirectoryName {
+            get
+            {
+                if (string.IsNullOrEmpty(_DirectoryName))
+                {
+                    if (Application.Current.Properties.TryGetValue("DirectoryName", out object dirName))
+                    {
+                        _DirectoryName = (string)dirName;
+                    }
+                    else
+                    {
+                        _DirectoryName = DefaultDirectoryName;
+                        Application.Current.Properties["DirectoryName"] = _DirectoryName;
+                    }
+                }
+                return _DirectoryName;
+            }
+            set
+            {
+                if (value != _DirectoryName)
+                {
+                    _DirectoryName = value;
+                    Application.Current.Properties["DirectoryName"] = _DirectoryName;
+                }
+            }
+        }
         /// <summary>
         /// Возвращает значение, которое показывает, что приложение запущено
         /// первый раз или нет.

@@ -25,15 +25,15 @@ namespace XF_FirstRun.Services
                 new Item { Id = Guid.NewGuid().ToString(), Name = "Product 7", Text = "Seventh item", Notes="This is an item notes.", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Name = "Product 8", Text = "Eighth item", Notes="This is an item notes.", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Name = "Product 9", Text = "Nineth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 10", Text = "Tenth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 11", Text = "Eleventh item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 12", Text = "Twelveth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 13", Text = "Thirteenth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 14", Text = "Fourteenth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 15", Text = "Fifteenth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 16", Text = "Sixteenth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 17", Text = "Seventeenth item", Notes="This is an item notes.", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Product 18", Text = "Eighteenth item", Notes="This is an item notes.", Description="This is an item description." }
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 10", Text = "Tenth item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 11", Text = "Eleventh item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 12", Text = "Twelveth item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 13", Text = "Thirteenth item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 14", Text = "Fourteenth item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 15", Text = "Fifteenth item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 16", Text = "Sixteenth item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 17", Text = "Seventeenth item", Notes="This is an item notes.", Description="This is an item description." },
+                //new Item { Id = Guid.NewGuid().ToString(), Name = "Product 18", Text = "Eighteenth item", Notes="This is an item notes.", Description="This is an item description." }
             };
         }
 

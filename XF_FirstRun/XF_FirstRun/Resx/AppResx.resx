@@ -123,6 +123,15 @@
   <data name="Browse_txt" xml:space="preserve">
     <value>Browse</value>
   </data>
+  <data name="DataDeleted_txt" xml:space="preserve">
+    <value>All your local data DELETED!</value>
+  </data>
+  <data name="DataNotDeleted_txt" xml:space="preserve">
+    <value>Your local  data NOT deletet!</value>
+  </data>
+  <data name="DeleteData_txt" xml:space="preserve">
+    <value>Are You really want to dalete all local data?</value>
+  </data>
   <data name="Hello_msg" xml:space="preserve">
     <value>Hello, World!</value>
     <comment>Hello message</comment>
@@ -135,6 +144,15 @@
   </data>
   <data name="List_View_1_txt" xml:space="preserve">
     <value>List View 1</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="Ok_btm" xml:space="preserve">
     <value>Ok</value>
@@ -149,17 +167,32 @@
   <data name="SettingsPage_title" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Settings_EraseDataButton_txt" xml:space="preserve">
+    <value>Erase Local  Data</value>
+  </data>
   <data name="Settings_Title_txt" xml:space="preserve">
     <value>Settings Page</value>
   </data>
   <data name="Settings_txt" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Setting_Directory_txt" xml:space="preserve">
+    <value>Local Data Saving Directory</value>
+  </data>
   <data name="Setting_Header_txt" xml:space="preserve">
     <value>Application Settings Page!</value>
     <comment>Header of Seetings Page</comment>
   </data>
+  <data name="Setting_SaveButton_txt" xml:space="preserve">
+    <value>Setup</value>
+  </data>
   <data name="Test_msg" xml:space="preserve">
     <value>Test message!</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

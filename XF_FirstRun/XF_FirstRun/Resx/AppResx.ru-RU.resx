@@ -117,52 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About_txt" xml:space="preserve">
+  <data name="About_txt1" xml:space="preserve">
     <value>О приложении</value>
   </data>
-  <data name="Browse_txt" xml:space="preserve">
+  <data name="Browse_txt1" xml:space="preserve">
     <value>Просмотр</value>
   </data>
-  <data name="Hello_msg" xml:space="preserve">
+  <data name="DataDeleted_txt" xml:space="preserve">
+    <value>ВСЕ локальные данные УДАЛЕНЫ!</value>
+  </data>
+  <data name="DataNotDeleted_txt" xml:space="preserve">
+    <value>Ваши локальные данные НЕ удалены!</value>
+  </data>
+  <data name="DeleteData_txt" xml:space="preserve">
+    <value>Вы уверены, что хотите УДАЛИТЬ ВСЕ  локальные данные приложения?</value>
+  </data>
+  <data name="Hello_msg1" xml:space="preserve">
     <value>Здравствуй, Мiр!</value>
     <comment>Hello message</comment>
   </data>
-  <data name="List0_txt" xml:space="preserve">
+  <data name="List0_txt1" xml:space="preserve">
     <value>Список № 0</value>
   </data>
-  <data name="List1_txt" xml:space="preserve">
+  <data name="List1_txt1" xml:space="preserve">
     <value>Список № 1</value>
   </data>
-  <data name="List_View_1_txt" xml:space="preserve">
+  <data name="List_View_1_txt1" xml:space="preserve">
     <value>Представление списка 1</value>
   </data>
-  <data name="Ok_btm" xml:space="preserve">
+  <data name="Message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Ok_btm1" xml:space="preserve">
     <value>Ok</value>
     <comment>Ok button</comment>
   </data>
-  <data name="PickLng" xml:space="preserve">
+  <data name="PickLng1" xml:space="preserve">
     <value>Выбирите Ваш язык</value>
   </data>
-  <data name="SelectLang_txt" xml:space="preserve">
+  <data name="SelectLang_txt1" xml:space="preserve">
     <value>Выбирите язык интерфайса:</value>
   </data>
-  <data name="SettingsPage_title" xml:space="preserve">
+  <data name="SettingsPage_title1" xml:space="preserve">
     <value>Настройки</value>
   </data>
-  <data name="Settings_Title_txt" xml:space="preserve">
+  <data name="Settings_EraseDataButton_txt" xml:space="preserve">
+    <value>Очистить локальные данные</value>
+  </data>
+  <data name="Settings_Title_txt1" xml:space="preserve">
     <value>Страница настроек</value>
   </data>
-  <data name="Settings_txt" xml:space="preserve">
+  <data name="Settings_txt1" xml:space="preserve">
     <value>Настройки</value>
   </data>
-  <data name="Setting_Header_txt" xml:space="preserve">
+  <data name="Setting_Directory_txt" xml:space="preserve">
+    <value>Каталог схранения локальных данных</value>
+  </data>
+  <data name="Setting_Header_txt1" xml:space="preserve">
     <value>Страница настройки приложения.</value>
     <comment>Header of Seetings Page</comment>
   </data>
-  <data name="Test string" xml:space="preserve">
-    <value>Тестовая строка</value>
+  <data name="Setting_SaveButton_txt" xml:space="preserve">
+    <value>Установить</value>
   </data>
-  <data name="Test_msg" xml:space="preserve">
+  <data name="Test string1" xml:space="preserve">
+    <value>Test string</value>
+  </data>
+  <data name="Test_msg1" xml:space="preserve">
     <value>Тестовое сообщение!</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
   </data>
 </root>

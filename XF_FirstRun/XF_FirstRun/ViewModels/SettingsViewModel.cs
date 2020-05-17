@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using XF_FirstRun.Helpers;
 using XF_FirstRun.Localization;
 using XF_FirstRun.Resx;
+using XF_FirstRun.Services;
 
 namespace XF_FirstRun.ViewModels
 {
@@ -22,6 +23,28 @@ namespace XF_FirstRun.ViewModels
         /// Сервис навигации между страницами
         /// </summary>
         private INavigation _navigation;
+
+        private string _LocalDirectory = string.Empty;
+        private bool _LocalDirectoryChanged = false;
+        public  string LocalDirectory
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_LocalDirectory))
+                {
+                    _LocalDirectory = SystemInformation.DirectoryName;
+                }
+                return _LocalDirectory;
+            }
+            set
+            {
+                if (SetProperty(ref _LocalDirectory, value))
+                {
+                    _LocalDirectoryChanged = true;
+                    SaveDirCommand.ChangeCanExecute();
+                }
+            }
+        }
         /// <summary>
         // Список доступных языков
         /// 
@@ -46,6 +69,9 @@ namespace XF_FirstRun.ViewModels
                 }
             }
         }
+        public Command SaveDirCommand { get; private set; }
+        public Command EraseDataCommand { get; private set; }
+
 
         CultureInfo currentCulture;
         private string _cultureName;
@@ -72,6 +98,35 @@ namespace XF_FirstRun.ViewModels
             _navigation = navigation;
             Title = Resx.AppResx.SettingsPage_title;
 
+            SaveDirCommand = new Command(
+                execute: async () =>
+                {
+                    var fileService = DependencyService.Get<IFileManager>();
+                    await fileService.SetDirectoryAsync(LocalDirectory);
+                    SystemInformation.DirectoryName = LocalDirectory;
+                    _LocalDirectoryChanged = false;
+                    SaveDirCommand.ChangeCanExecute();
+                },
+                canExecute: () =>
+                {
+                    return _LocalDirectoryChanged;
+                }
+            );
+
+            EraseDataCommand = new Command(async () =>
+            {
+                bool answer = await _page.DisplayAlert(AppResx.Warning, AppResx.DeleteData_txt, AppResx.Yes, AppResx.No);
+                if (answer)
+                {
+                    var fileService = DependencyService.Get<IFileManager>();
+                    await fileService.DeleteDataAsync();
+                    await _page.DisplayAlert(AppResx.Message, AppResx.DataDeleted_txt, AppResx.Ok);
+                }
+                else
+                {
+                    await _page.DisplayAlert(AppResx.Warning, AppResx.DataNotDeleted_txt, AppResx.Ok);
+                }
+            });
             LangChangeCommand = new Command(() =>
             {
                 SystemInformation.AppLang = SelectedLang;

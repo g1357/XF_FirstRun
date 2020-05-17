@@ -65,6 +65,10 @@ namespace XF_FirstRun
                 var items = await Json.ToObjestAsync<List<Item>>(text);
                 await dataService.SetDataAsync(items);
             }
+            else
+            {
+                // GetDemoData();
+            }
         }
 
         private async void SaveData()

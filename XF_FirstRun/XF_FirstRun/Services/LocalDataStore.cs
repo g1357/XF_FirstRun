@@ -36,6 +36,7 @@ namespace XF_FirstRun.Services
 
         public LocalDataStore()
         {
+            //ShollingLists = 
         }
         #region Общие операции
         public async Task<bool> LoadDataAsync()

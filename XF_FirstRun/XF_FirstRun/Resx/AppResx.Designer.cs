@@ -79,6 +79,33 @@ namespace XF_FirstRun.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All your local data DELETED!.
+        /// </summary>
+        internal static string DataDeleted_txt {
+            get {
+                return ResourceManager.GetString("DataDeleted_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your local  data NOT deletet!.
+        /// </summary>
+        internal static string DataNotDeleted_txt {
+            get {
+                return ResourceManager.GetString("DataNotDeleted_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are You really want to dalete all local data?.
+        /// </summary>
+        internal static string DeleteData_txt {
+            get {
+                return ResourceManager.GetString("DeleteData_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello, World!.
         /// </summary>
         internal static string Hello_msg {
@@ -115,6 +142,33 @@ namespace XF_FirstRun.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        internal static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string Ok_btm {
@@ -142,11 +196,38 @@ namespace XF_FirstRun.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local Data Saving Directory.
+        /// </summary>
+        internal static string Setting_Directory_txt {
+            get {
+                return ResourceManager.GetString("Setting_Directory_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Settings Page!.
         /// </summary>
         internal static string Setting_Header_txt {
             get {
                 return ResourceManager.GetString("Setting_Header_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string Setting_SaveButton_txt {
+            get {
+                return ResourceManager.GetString("Setting_SaveButton_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erase Local  Data.
+        /// </summary>
+        internal static string Settings_EraseDataButton_txt {
+            get {
+                return ResourceManager.GetString("Settings_EraseDataButton_txt", resourceCulture);
             }
         }
         
@@ -183,6 +264,24 @@ namespace XF_FirstRun.Resx {
         internal static string Test_msg {
             get {
                 return ResourceManager.GetString("Test_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
