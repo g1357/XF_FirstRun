@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <Version>1.0.20</Version>
+    <Version>1.0.21</Version>
     <Company>E+E.SU</Company>
     <Authors>GBD</Authors>
-    <AssemblyVersion>1.0.20.1</AssemblyVersion>
-    <FileVersion>1.0.20.1</FileVersion>
+    <AssemblyVersion>1.0.21.1</AssemblyVersion>
+    <FileVersion>1.0.21.1</FileVersion>
     <Description>Shopping List manipulation application for  smartphones.</Description>
     <Copyright>E+E.SU</Copyright>
     <PackageIcon>ShoppingCart01.jpg</PackageIcon>
@@ -50,5 +50,9 @@
     <EmbeddedResource Update="Views\ShoppingListsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>

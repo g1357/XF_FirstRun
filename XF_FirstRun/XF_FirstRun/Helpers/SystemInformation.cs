@@ -106,6 +106,7 @@ namespace XF_FirstRun.Helpers
                 {
                     _appLang = value;
                     Resx.AppResx.Culture = new CultureInfo(_appLang);
+                    Application.Current.Properties["AppLang"] = _appLang;
                 }
             }
         }
@@ -150,6 +151,10 @@ namespace XF_FirstRun.Helpers
             Application.Current.Properties["CurrentVersion"] = ApplicationVersionString;
             return true;
         }
+        /// <summary>
+        /// Если свойтво приложения языка не задано, то берётсё систеный язык.
+        /// </summary>
+        /// <returns>Код языка (en-US)</returns>
         private static string DetectLanguage()
         {
             string lang;

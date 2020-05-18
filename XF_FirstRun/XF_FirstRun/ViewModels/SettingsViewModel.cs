@@ -10,6 +10,8 @@ using XF_FirstRun.Helpers;
 using XF_FirstRun.Localization;
 using XF_FirstRun.Resx;
 using XF_FirstRun.Services;
+using XF_FirstRun;
+using System.Threading.Tasks;
 
 namespace XF_FirstRun.ViewModels
 {
@@ -50,7 +52,7 @@ namespace XF_FirstRun.ViewModels
         /// 
         /// </summary>
         public List<string> Languages { get; set; } =
-            new List<string>() { "EN", "RU" };
+            new List<string>() { "en-US", "ru-RU" };
        /// <summary>
        /// Поле для выбранного языка
        /// </summary>
@@ -65,7 +67,7 @@ namespace XF_FirstRun.ViewModels
             {
                 if (SetProperty(ref _SelectedLanguage, value))
                 {
-                    SetLanguage();
+                    SetLanguageAsync();
                 }
             }
         }
@@ -115,6 +117,10 @@ namespace XF_FirstRun.ViewModels
 
             EraseDataCommand = new Command(async () =>
             {
+                var m1 = AppResx.Warning;
+                var m2 = AppResx.DeleteData_txt;
+                var m3 = AppResx.Yes;
+                var m4 = AppResx.No;
                 bool answer = await _page.DisplayAlert(AppResx.Warning, AppResx.DeleteData_txt, AppResx.Yes, AppResx.No);
                 if (answer)
                 {
@@ -162,7 +168,7 @@ namespace XF_FirstRun.ViewModels
             SelectedLang = CultureName;
         }
 
-        async void RestartApp()
+        private async Task RestartApp()
         {
             await _page.DisplayAlert("Alert", "Start App again to switch language!", "OK");
             //Application.Current.SendSleep();
@@ -176,11 +182,13 @@ namespace XF_FirstRun.ViewModels
         /// <summary>
         /// Установка нового выбранного языка
         /// </summary>
-        private void SetLanguage()
+        private async System.Threading.Tasks.Task SetLanguageAsync()
         {
             App.CurrentLanguage = SelectedLanguage;
-            MessagingCenter.Send<object, string>(this,
-                "Restart", "Restart");
+            SystemInformation.AppLang = SelectedLanguage;
+            await Application.Current.SavePropertiesAsync();
+            //MessagingCenter.Send<object, string>(this, "Restart", "Restart");
+            await RestartApp();
         }
     }
 }

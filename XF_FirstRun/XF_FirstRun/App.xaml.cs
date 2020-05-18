@@ -24,6 +24,7 @@ namespace XF_FirstRun
         {
             InitializeComponent();
 
+            CurrentLanguage = SystemInformation.AppLang;
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<DataStore>();
             MainPage = new AppShell();
@@ -51,9 +52,11 @@ namespace XF_FirstRun
 
         protected void Restart(object s, string str)
         {
-            InitializeComponent();
+            SaveData();
 
-            MainPage = new AppShell();
+            //InitializeComponent();
+
+            //MainPage = new AppShell();
         }
 
         private async void GetData()
@@ -91,8 +94,9 @@ namespace XF_FirstRun
 
         }
 
-        private async void SaveData()
+        internal async void SaveData()
         {
+            await Application.Current.SavePropertiesAsync();
             var dataService = DependencyService.Get<IDataStore<Item>>();
             var items = await dataService.GetItemsAsync();
             var text = await Json.FromObjectAsync(items);
